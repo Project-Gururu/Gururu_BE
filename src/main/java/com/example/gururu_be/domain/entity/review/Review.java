@@ -1,4 +1,4 @@
-package com.example.gururu_be.domain.entity;
+package com.example.gururu_be.domain.entity.review;
 
 import com.example.gururu_be.domain.entity.baseentity.BaseEntity;
 

@@ -1,0 +1,20 @@
+management:
+  endpoint:
+  endpoints:
+    web:
+      base-path: /application
+
+---
+spring:
+  config:
+    activate:
+      on-profile: real1
+server:
+  port: 8081
+---
+spring:
+  config:
+    activate:
+      on-profile: real2
+server:
+  port: 8082
