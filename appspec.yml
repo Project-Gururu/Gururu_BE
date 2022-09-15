@@ -24,5 +24,3 @@ hooks:
     - location: scripts/health.sh
       timeout: 360
       runas: ec2-user
-  BeforeInstall:
-    - location: scripts/beforeInstall.bash
