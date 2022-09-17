@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source:  /
-    destination: /home/ec2-user/cicd-test
+    destination: /home/ec2-user/cicd-gururu
     overwrite: yes
 
 permissions:
