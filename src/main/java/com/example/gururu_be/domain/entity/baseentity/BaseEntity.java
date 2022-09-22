@@ -16,7 +16,7 @@ import java.util.UUID;
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 @ToString
-public abstract class BaseEntity extends BaseTimeEntity {
+public abstract class BaseEntity {
 
     @Id
     @GeneratedValue(generator = "UUID")
@@ -28,12 +28,6 @@ public abstract class BaseEntity extends BaseTimeEntity {
     @Column(updatable = false, nullable = false)
     private UUID id;
 
-    @CreatedBy
-    @Column(updatable = false)
-    private UUID createdBy;
-
-    @LastModifiedBy
-    private UUID modifiedBy;
 
     @Enumerated(EnumType.STRING)
     private StatusFlag delFlag = StatusFlag.NORMAL;
