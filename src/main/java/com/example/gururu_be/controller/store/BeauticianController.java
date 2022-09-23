@@ -21,12 +21,12 @@ public class BeauticianController {
      * M2-5 스타일리스트 등록
      */
     @PostMapping("/")
-    public ResponseEntity<BeauticianDto> createBeautician(@RequestBody BeauticianDto beauticianDto) {
+    public ResponseEntity<ResResultDto> createBeautician(@RequestBody BeauticianDto beauticianDto) {
 
         //사업자 생성 서비스 호출
-        beauticianDto = beauticianService.createBeautician(beauticianDto);
+        beauticianService.createBeautician(beauticianDto);
 
-        return ResponseEntity.ok(beauticianDto);
+        return ResponseEntity.ok(new ResResultDto("스타일리스트 정보 등록 성공"));
     }
 
     /**

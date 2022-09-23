@@ -21,12 +21,12 @@ public class PriceController {
      * M2-10 가격 등록
      */
     @PostMapping("/")
-    public ResponseEntity<PriceDto> createPrice(@RequestBody PriceDto priceDto) {
+    public ResponseEntity<ResResultDto> createPrice(@RequestBody PriceDto priceDto) {
 
         //사업자 생성 서비스 호출
-        priceDto = priceService.createPrice(priceDto);
+        priceService.createPrice(priceDto);
 
-        return ResponseEntity.ok(priceDto);
+        return ResponseEntity.ok(new ResResultDto("가격 정보 등록 성공"));
     }
 
     /**
