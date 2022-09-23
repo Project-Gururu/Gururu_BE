@@ -14,7 +14,6 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.validation.constraints.Size;
-import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -50,6 +49,7 @@ public class Member extends BaseEntity {
         this.profileImage = profileImage;
         this.role = role;
     }
+
     //fixme 소셜로그인 전용임으로 password 불필요하나,
     // 스프링시큐리티 특성상 암호화된 password 를 넣어야한다. updatePassword()를 통해 암호화된 비밀번호를 넣자.
     // 추후 일반 회원가입 기능이 생긴다면, 패스워드 검증 룰을 재정의 하여야한다.

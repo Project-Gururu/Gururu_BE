@@ -26,7 +26,7 @@ public class CustomAuditorAware implements AuditorAware<UUID> {
 
         log.debug("getCurrentAuditor()");
 
-        Optional<String> optionalLoginid = SecurityUtil.getCurrentUsername();
+        Optional<String> optionalLoginid = SecurityUtil.getCurrentNickname();
 
         if (optionalLoginid.isPresent()) {
             Optional<Member> optionalMember = memberRepository.findRequires_NewByLoginId(optionalLoginid.get());
