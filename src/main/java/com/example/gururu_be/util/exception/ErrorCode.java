@@ -41,6 +41,16 @@ public enum ErrorCode {
     MEMBER_LOGINID_NOT_FOUND_404(HttpStatus.NOT_FOUND, "회원 정보를 찾을 수 없습니다."),
     MEMBER_LOGINID_DUPLICATION_409(HttpStatus.CONFLICT, "이미 가입된 이메일입니다."),
 
+    // Store 관련
+    STORE_NOT_FOUND_404(HttpStatus.NOT_FOUND, "요청한 가게 ID가 없습니다."),
+    STORE_DUPLICATION_409(HttpStatus.CONFLICT, "이미 등록된 가게 ID 입니다."),
+    STORE_DELETE_409(HttpStatus.CONFLICT, "삭제된 가게 ID 입니다."),
+
+    // Beautician 관련
+    BEAUTICIAN_NOT_FOUND_404(HttpStatus.NOT_FOUND, "요청한 스타일리스트 ID가 없습니다."),
+    BEAUTICIAN_DUPLICATION_409(HttpStatus.CONFLICT, "이미 등록된 스타일리스트 ID 입니다."),
+    BEAUTICIAN_DELETE_409(HttpStatus.CONFLICT, "삭제된 스타일리스트 ID 입니다."),
+
     // Role 관련
     NO_PERMISSION_TO_WRITE_NOTICE_400(HttpStatus.FORBIDDEN, "공지 사항 작성 권한이 없습니다."),
     NO_PERMISSION_TO_MODIFY_NOTICE_400(HttpStatus.FORBIDDEN, "공지 사항 수정 권한이 없습니다."),
