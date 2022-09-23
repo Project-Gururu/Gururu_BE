@@ -20,12 +20,12 @@ public class StoreController {
      * M2-1 사업자 정보 등록
      */
     @PostMapping("/")
-    public ResponseEntity<StoreDto> createStore(@RequestBody StoreDto storeDto) {
+    public ResponseEntity<ResResultDto> createStore(@RequestBody StoreDto storeDto) {
 
         //사업자 생성 서비스 호출
-        storeDto = storeService.createStore(storeDto);
+        storeService.createStore(storeDto);
 
-        return ResponseEntity.ok(storeDto);
+        return ResponseEntity.ok(new ResResultDto("사업자 정보 등록 성공"));
     }
 
     /**
