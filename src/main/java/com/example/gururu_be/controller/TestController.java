@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class TestController {
-    @Value("${LOGNAME}")
-    private String name;
+    @Value("${DB_URL}")
+    private String url;
 
 
     @GetMapping("/in")
     public String CheckIn() {
-        return "check-in" + name ;
+        return "check-in" + url ;
     }
 }
