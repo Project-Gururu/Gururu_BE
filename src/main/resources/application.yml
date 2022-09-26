@@ -9,10 +9,7 @@ spring:
   config:
     activate:
       on-profile: real1
-  profiles:
-    active: local
-    include:
-      - secret
+
 server:
   port: 8081
 ---
@@ -20,9 +17,6 @@ spring:
   config:
     activate:
       on-profile: real2
-  profiles:
-    active: local
-    include:
-      - secret
+
 server:
   port: 8082
