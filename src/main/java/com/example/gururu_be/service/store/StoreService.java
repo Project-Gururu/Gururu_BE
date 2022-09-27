@@ -9,6 +9,7 @@ import com.example.gururu_be.enumerate.StatusFlag;
 import com.example.gururu_be.util.exception.ErrorCode;
 import com.example.gururu_be.util.exception.RequestException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,10 +31,9 @@ public class StoreService {
      */
     @Transactional
     public StoreDto createStore(StoreDto storeDto) {
-        // 1. 파라미터로 받은 스토어 객체에서 필요한 데이터를 추출한다.
-        UUID memberId = storeDto.getMbId();
-        System.out.println("memberId 확인 = " + memberId);
-        Optional<Member> optionalMember = memberRepository.findById(memberId);
+
+        String loginId = SecurityContextHolder.getContext().getAuthentication().getName();
+        Optional<Member> optionalMember = memberRepository.findByLoginId(loginId);
         Member member = optionalMember.orElseThrow(() -> new RequestException(ErrorCode.MEMBER_LOGINID_NOT_FOUND_404));
 
 
