@@ -51,6 +51,12 @@ public enum ErrorCode {
     BEAUTICIAN_DUPLICATION_409(HttpStatus.CONFLICT, "이미 등록된 스타일리스트 ID 입니다."),
     BEAUTICIAN_DELETE_409(HttpStatus.CONFLICT, "삭제된 스타일리스트 ID 입니다."),
 
+    // MemberLocalization 관련
+    MEMBER_LOCALIZATION_NOT_FOUND_404(HttpStatus.NOT_FOUND, "요청한 멤버위치 ID가 없습니다."),
+    MEMBER_LOCALIZATION_DUPLICATION_409(HttpStatus.CONFLICT, "이미 등록된 멤버위치 ID 입니다."),
+    MEMBER_LOCALIZATION_DELETE_409(HttpStatus.CONFLICT, "삭제된 멤버위치 ID 입니다."),
+
+
     // Role 관련
     NO_PERMISSION_TO_WRITE_NOTICE_400(HttpStatus.FORBIDDEN, "공지 사항 작성 권한이 없습니다."),
     NO_PERMISSION_TO_MODIFY_NOTICE_400(HttpStatus.FORBIDDEN, "공지 사항 수정 권한이 없습니다."),
