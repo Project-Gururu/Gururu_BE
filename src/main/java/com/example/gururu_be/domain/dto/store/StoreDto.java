@@ -1,14 +1,11 @@
 package com.example.gururu_be.domain.dto.store;
 
 
-
 import com.example.gururu_be.domain.entity.store.Store;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
 
 import java.util.UUID;
 
@@ -30,7 +27,11 @@ public class StoreDto {
 
     private String storeHoliday;
 
-    private String storeAddrs;
+    private String storeNewAddrs;
+
+    private String storeOldAddrs;
+
+    private String storeDetailedAddrs;
 
     private String storeAddrsDesc;
 
@@ -51,7 +52,9 @@ public class StoreDto {
         this.storeImg = store.getStoreImg();
         this.storeDesc = store.getStoreDesc();
         this.storeHoliday = store.getStoreHoliday();
-        this.storeAddrs = store.getStoreAddrs();
+        this.storeNewAddrs = store.getStoreNewAddrs();
+        this.storeOldAddrs = store.getStoreOldAddrs();
+        this.storeDetailedAddrs = store.getStoreDetailedAddrs();
         this.storeAddrsDesc = store.getStoreAddrsDesc();
         this.companyRegistrationNumber = store.getCompanyRegistrationNumber();
         this.openTime = store.getOpenTime();
