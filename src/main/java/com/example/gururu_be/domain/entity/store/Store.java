@@ -10,6 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -25,7 +26,7 @@ public class Store extends BaseEntity {
     @JoinColumn(name = "mbId")
     private Member member;
 
-    @Column(nullable = false)
+    @NotNull
     @Size(max = 50)
     private String storeName;
 
@@ -35,30 +36,37 @@ public class Store extends BaseEntity {
     @Size(max = 225)
     private String storeDesc;
 
-    @Column(nullable = false)
     @Size(max = 50)
     private String storeHoliday;
 
-    @Column(nullable = false)
+    @NotNull
     @Size(max = 50)
-    private String storeAddrs;
+    private String storeNewAddrs;
+
+    @NotNull
+    @Size(max = 50)
+    private String storeOldAddrs;
+
+    @NotNull
+    @Size(max = 50)
+    private String storeDetailedAddrs;
 
     @Size(max = 225)
     private String storeAddrsDesc;
 
-    @Column(nullable = false)
+    @NotNull
     @Size(max = 50)
     private String companyRegistrationNumber;
 
-    @Column(nullable = false)
+    @NotNull
     @Size(max = 50)
     private String openTime;
 
-    @Column(nullable = false)
+    @NotNull
     @Size(max = 50)
     private String closeTime;
 
-    @Column(nullable = false)
+    @NotNull
     @Size(max = 50)
     private String phoneNumber;
 
@@ -77,7 +85,9 @@ public class Store extends BaseEntity {
         this.storeImg = storeDto.getStoreImg();
         this.storeDesc = storeDto.getStoreDesc();
         this.storeHoliday = storeDto.getStoreHoliday();
-        this.storeAddrs = storeDto.getStoreAddrs();
+        this.storeNewAddrs = storeDto.getStoreNewAddrs();
+        this.storeOldAddrs = storeDto.getStoreOldAddrs();
+        this.storeDetailedAddrs = storeDto.getStoreDetailedAddrs();
         this.storeAddrsDesc = storeDto.getStoreAddrsDesc();
         this.companyRegistrationNumber = storeDto.getCompanyRegistrationNumber();
         this.openTime = storeDto.getOpenTime();

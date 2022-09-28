@@ -43,7 +43,9 @@ public class StoreService {
                            .storeImg(storeDto.getStoreImg())
                            .storeDesc(storeDto.getStoreDesc())
                            .storeHoliday(storeDto.getStoreHoliday())
-                           .storeAddrs(storeDto.getStoreAddrs())
+                           .storeNewAddrs(storeDto.getStoreNewAddrs())
+                           .storeOldAddrs(storeDto.getStoreOldAddrs())
+                           .storeDetailedAddrs(storeDto.getStoreDetailedAddrs())
                            .storeAddrsDesc(storeDto.getStoreAddrsDesc())
                            .companyRegistrationNumber(storeDto.getCompanyRegistrationNumber())
                            .openTime(storeDto.getOpenTime())
@@ -75,9 +77,9 @@ public class StoreService {
      * M2-3 사업자 정보 수정
      */
     @Transactional
-    public void modifyStore(StoreDto storeDto) {
-        UUID storeRegisterId = storeDto.getStoreRegisterId();
+    public void modifyStore(UUID storeRegisterId, StoreDto storeDto) {
         Optional<Store> optionalStore = storeRepository.findById(storeRegisterId);
+        System.out.println("optionalStore = " + optionalStore);
         Store store = optionalStore.orElseThrow(
                 () -> new RequestException(ErrorCode.STORE_NOT_FOUND_404));
         if (optionalStore.get().getDelFlag().equals(StatusFlag.DELETED)) {

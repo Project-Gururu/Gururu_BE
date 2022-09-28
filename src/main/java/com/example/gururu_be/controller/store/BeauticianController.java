@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/store/beautician")
+@RequestMapping("/admin/v1.0/store")
 @RequiredArgsConstructor
 public class BeauticianController {
 
@@ -20,11 +20,11 @@ public class BeauticianController {
     /**
      * M2-5 스타일리스트 등록
      */
-    @PostMapping("/")
-    public ResponseEntity<ResResultDto> createBeautician(@RequestBody BeauticianDto beauticianDto) {
+    @PostMapping("/{storeRegisterId}/beautician")
+    public ResponseEntity<ResResultDto> createBeautician(@PathVariable String storeRegisterId, @RequestBody BeauticianDto beauticianDto) {
 
         //사업자 생성 서비스 호출
-        beauticianService.createBeautician(beauticianDto);
+        beauticianService.createBeautician(UUID.fromString(storeRegisterId),beauticianDto);
 
         return ResponseEntity.ok(new ResResultDto("스타일리스트 정보 등록 성공"));
     }
@@ -32,10 +32,10 @@ public class BeauticianController {
     /**
      * M2-6 선택 스타일리스트 조회
      */
-    @GetMapping("/")
-    public ResponseEntity<BeauticianDto> getOneBeautician(@RequestParam("beauticianId") UUID beauticianId) {
+    @GetMapping("/{storeRegisterId}/beautician/{beauticianId}")
+    public ResponseEntity<BeauticianDto> getOneBeautician(@PathVariable String storeRegisterId,@PathVariable String beauticianId) {
 
-        BeauticianDto beauticianDto = beauticianService.getOneBeautician(beauticianId);
+        BeauticianDto beauticianDto = beauticianService.getOneBeautician(UUID.fromString(storeRegisterId),UUID.fromString(beauticianId));
 
         return ResponseEntity.ok(beauticianDto);
     }
@@ -43,11 +43,11 @@ public class BeauticianController {
     /**
      * M2-7 스타일리스트 정보 수정
      */
-    @PatchMapping("/")
-    public ResponseEntity<ResResultDto> modifyBeautician(@RequestBody BeauticianDto beauticianDto) {
+    @PutMapping("/{storeRegisterId}/beautician/{beauticianId}")
+    public ResponseEntity<ResResultDto> modifyBeautician(@PathVariable String storeRegisterId, @PathVariable String beauticianId, @RequestBody BeauticianDto beauticianDto) {
 
         //사업자 수정 서비스 호출
-        beauticianService.modifyBeautician(beauticianDto);
+        beauticianService.modifyBeautician(UUID.fromString(storeRegisterId),UUID.fromString(beauticianId),beauticianDto);
 
         return ResponseEntity.ok(new ResResultDto("스타일리스트 정보 수정 성공"));
     }
@@ -55,10 +55,10 @@ public class BeauticianController {
     /**
      * M2-8 스타일리스트 삭제
      */
-    @DeleteMapping("/")
-    public ResponseEntity<ResResultDto> deleteBeautician(@RequestParam("beauticianId") UUID beauticianId) {
+    @DeleteMapping("/{storeRegisterId}/beautician/{beauticianId}")
+    public ResponseEntity<ResResultDto> deleteBeautician(@PathVariable String storeRegisterId, @PathVariable String beauticianId) {
 
-        beauticianService.deleteBeautician(beauticianId);
+        beauticianService.deleteBeautician(UUID.fromString(storeRegisterId), UUID.fromString(beauticianId));
 
         return ResponseEntity.ok(new ResResultDto("스타일리스트 정보 삭제 성공"));
     }
@@ -66,8 +66,8 @@ public class BeauticianController {
     /**
      * M2-9 전체 스타일리스트 정보 조회
      */
-    @GetMapping("/all")
-    public List<BeauticianDto> getAllBeautician(@RequestParam("storeRegisterId") UUID storeRegisterId) {
-        return beauticianService.getAllBeautician(storeRegisterId);
+    @GetMapping("/{storeRegisterId}/beautician")
+    public List<BeauticianDto> getAllBeautician(@PathVariable String storeRegisterId) {
+        return beauticianService.getAllBeautician(UUID.fromString(storeRegisterId));
     }
 }

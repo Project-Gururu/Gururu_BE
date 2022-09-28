@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/store")
+@RequestMapping("/admin/v1.0/store")
 @RequiredArgsConstructor
 public class StoreController {
 
@@ -31,10 +31,10 @@ public class StoreController {
     /**
      * M2-3 선택 사업자 정보 조회
      */
-    @GetMapping("/")
-    public ResponseEntity<StoreDto> getOneStore(@RequestParam("storeRegisterId") UUID storeRegisterId) {
+    @GetMapping("/{storeRegisterId}")
+    public ResponseEntity<StoreDto> getOneStore(@PathVariable String storeRegisterId) {
 
-        StoreDto storeDto = storeService.getOneStore(storeRegisterId);
+        StoreDto storeDto = storeService.getOneStore(UUID.fromString(storeRegisterId));
 
         return ResponseEntity.ok(storeDto);
     }
@@ -42,11 +42,11 @@ public class StoreController {
     /**
      * M2-3 사업자 정보 수정
      */
-    @PatchMapping("/")
-    public ResponseEntity<ResResultDto> modifyStore(@RequestBody StoreDto storeDto) {
+    @PutMapping("/{storeRegisterId}")
+    public ResponseEntity<ResResultDto> modifyStore(@PathVariable String storeRegisterId,@RequestBody StoreDto storeDto) {
 
         //사업자 수정 서비스 호출
-        storeService.modifyStore(storeDto);
+        storeService.modifyStore(UUID.fromString(storeRegisterId),storeDto);
 
         return ResponseEntity.ok(new ResResultDto("사업자 정보 수정 성공"));
     }
@@ -54,10 +54,10 @@ public class StoreController {
     /**
      * M2-4 사업자 정보 삭제
      */
-    @DeleteMapping("/")
-    public ResponseEntity<ResResultDto> deleteStore(@RequestParam("storeRegisterId") UUID storeRegisterId) {
+    @DeleteMapping("/{storeRegisterId}")
+    public ResponseEntity<ResResultDto> deleteStore(@PathVariable String storeRegisterId) {
 
-        storeService.deleteStore(storeRegisterId);
+        storeService.deleteStore(UUID.fromString(storeRegisterId));
 
         return ResponseEntity.ok(new ResResultDto("사업자 정보 삭제 성공"));
 
