@@ -28,10 +28,7 @@ public class BeauticianService {
      * M2-5 스타일리스트 등록
      */
     @Transactional
-    public BeauticianDto createBeautician(BeauticianDto beauticianDto) {
-        UUID storeRegisterId = beauticianDto.getStoreRegisterId();
-        System.out.println("storeRegisterId 확인 = " + storeRegisterId);
-
+    public BeauticianDto createBeautician(UUID storeRegisterId,BeauticianDto beauticianDto) {
         Optional<Store> optionalStore = storeRepository.findById(storeRegisterId);
         Store store = optionalStore.orElseThrow(() -> new RequestException(ErrorCode.STORE_NOT_FOUND_404));
 
@@ -52,8 +49,9 @@ public class BeauticianService {
     /**
      * M2-6 선택 스타일리스트 조회
      */
-    public BeauticianDto getOneBeautician(UUID beauticianId) {
-
+    public BeauticianDto getOneBeautician(UUID storeRegisterId, UUID beauticianId) {
+        storeRepository.findById(storeRegisterId).orElseThrow(
+                () -> new RequestException(ErrorCode.STORE_NOT_FOUND_404));
         Optional<Beautician> optionalBeautician = beauticianRepository.findById(beauticianId);
         Beautician beautician = optionalBeautician.orElseThrow(
                 () -> new RequestException(ErrorCode.BEAUTICIAN_NOT_FOUND_404));
@@ -68,8 +66,9 @@ public class BeauticianService {
      * M2-7 스타일리스트 정보 수정
      */
     @Transactional
-    public void modifyBeautician(BeauticianDto beauticianDto) {
-        UUID beauticianId = beauticianDto.getBeauticianId();
+    public void modifyBeautician(UUID storeRegisterId, UUID beauticianId,BeauticianDto beauticianDto) {
+        storeRepository.findById(storeRegisterId).orElseThrow(
+                () -> new RequestException(ErrorCode.STORE_NOT_FOUND_404));
         Optional<Beautician> optionalBeautician = beauticianRepository.findById(beauticianId);
         Beautician beautician = optionalBeautician.orElseThrow(
                 () -> new RequestException(ErrorCode.BEAUTICIAN_NOT_FOUND_404));
@@ -83,7 +82,9 @@ public class BeauticianService {
      * M2-8 스타일리스트 삭제
      */
     @Transactional
-    public void deleteBeautician(UUID beauticianId) {
+    public void deleteBeautician(UUID storeRegisterId, UUID beauticianId) {
+        storeRepository.findById(storeRegisterId).orElseThrow(
+                () -> new RequestException(ErrorCode.STORE_NOT_FOUND_404));
         Optional<Beautician> optionalBeautician = beauticianRepository.findById(beauticianId);
         Beautician beautician = optionalBeautician.orElseThrow(
                 () -> new RequestException(ErrorCode.BEAUTICIAN_NOT_FOUND_404));

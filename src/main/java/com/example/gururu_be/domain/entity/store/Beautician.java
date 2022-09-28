@@ -2,13 +2,13 @@ package com.example.gururu_be.domain.entity.store;
 
 import com.example.gururu_be.domain.dto.store.BeauticianDto;
 import com.example.gururu_be.domain.entity.baseentity.BaseEntity;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -24,7 +24,7 @@ public class Beautician extends BaseEntity {
     @JoinColumn(name = "storeRegisterId")
     private Store store;
 
-    @Column(nullable = false)
+    @NotNull
     @Size(max = 50)
     private String beauticianName;
 
@@ -34,15 +34,12 @@ public class Beautician extends BaseEntity {
     @Column(columnDefinition = "LONGTEXT")
     private String beauticianImg;
 
-    @Column(nullable = false)
     @Size(max = 50)
     private String beauticianHoliday;
 
-    @Column(nullable = false)
     @Size(max = 50)
     private String beauticianOpenTime;
 
-    @Column(nullable = false)
     @Size(max = 50)
     private String beauticianCloseTime;
 
