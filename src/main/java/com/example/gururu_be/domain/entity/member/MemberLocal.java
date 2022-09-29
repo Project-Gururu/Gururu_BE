@@ -1,6 +1,6 @@
 package com.example.gururu_be.domain.entity.member;
 
-import com.example.gururu_be.domain.dto.member.MemberLocalizationDto;
+import com.example.gururu_be.domain.dto.store.MemberLocalDto;
 import com.example.gururu_be.domain.entity.baseentity.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,10 +16,10 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "MEMBERLOCALIZATION")
-public class MemberLocalization extends BaseEntity {
+@Table(name = "MEMBERLOCAL")
+public class MemberLocal extends BaseEntity {
 
-    //MemberLocalization : Member => N: 1 엔티티에서 mbId 외래키를 뜻함
+    // N: 1 엔티티에서 mbId 외래키를 뜻함
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mbId")
     private Member member;
@@ -32,8 +32,8 @@ public class MemberLocalization extends BaseEntity {
     @Size(max = 50)
     private String memberAddrs;
 
-    public void updateMemberLocalization(MemberLocalizationDto memberLocalizationDto) {
-        this.addrsName = memberLocalizationDto.getAddrsName();
-        this.memberAddrs = memberLocalizationDto.getMemberAddrs();
+    public void updateMemberLocal(MemberLocalDto memberLocalDto) {
+        this.addrsName = memberLocalDto.getAddrsName();
+        this.memberAddrs = memberLocalDto.getMemberAddrs();
     }
 }
