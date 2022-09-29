@@ -1,7 +1,7 @@
 package com.example.gururu_be.controller.member;
 
 import com.example.gururu_be.domain.dto.ResResultDto;
-import com.example.gururu_be.domain.dto.store.MemberLocalDto;
+import com.example.gururu_be.domain.dto.member.MemberLocalDto;
 import com.example.gururu_be.service.member.MemberLocalService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

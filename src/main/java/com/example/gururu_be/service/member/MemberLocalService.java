@@ -1,7 +1,7 @@
 package com.example.gururu_be.service.member;
 
 
-import com.example.gururu_be.domain.dto.store.MemberLocalDto;
+import com.example.gururu_be.domain.dto.member.MemberLocalDto;
 import com.example.gururu_be.domain.entity.member.Member;
 import com.example.gururu_be.domain.entity.member.MemberLocal;
 import com.example.gururu_be.domain.repository.member.MemberLocalRepository;
@@ -30,8 +30,8 @@ public class MemberLocalService {
      */
     @Transactional
     public MemberLocalDto createLocal(UUID mbId, MemberLocalDto memberLocalDto) {
-        Optional<Member> optionalStore = memberRepository.findById(mbId);
-        Member member = optionalStore.orElseThrow(() -> new RequestException(ErrorCode.MEMBER_LOGINID_NOT_FOUND_404));
+        Optional<Member> optionalMember = memberRepository.findById(mbId);
+        Member member = optionalMember.orElseThrow(() -> new RequestException(ErrorCode.MEMBER_LOGINID_NOT_FOUND_404));
 
 
         MemberLocal memberLocal = MemberLocal.builder()

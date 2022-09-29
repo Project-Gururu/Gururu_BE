@@ -1,6 +1,6 @@
 package com.example.gururu_be.domain.entity.member;
 
-import com.example.gururu_be.domain.dto.store.MemberLocalDto;
+import com.example.gururu_be.domain.dto.member.MemberLocalDto;
 import com.example.gururu_be.domain.entity.baseentity.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
