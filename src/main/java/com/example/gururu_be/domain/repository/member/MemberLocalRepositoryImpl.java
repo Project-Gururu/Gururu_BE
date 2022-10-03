@@ -27,7 +27,9 @@ public class MemberLocalRepositoryImpl implements MemberLocalRepositoryCustom {
                         memberLocal.member.id,
                         memberLocal.id,
                         memberLocal.addrsName,
-                        memberLocal.memberAddrs))
+                        memberLocal.memberAddrs,
+                        memberLocal.x,
+                        memberLocal.y))
                 .from(memberLocal)
                 .leftJoin(member)
                 .on(member.id.eq(memberLocal.member.id))
