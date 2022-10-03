@@ -38,6 +38,8 @@ public class MemberLocalService {
                 .member(member)
                 .addrsName(memberLocalDto.getAddrsName())
                 .memberAddrs(memberLocalDto.getMemberAddrs())
+                .x(memberLocalDto.getX())
+                .y(memberLocalDto.getY())
                 .build();
         // 7. 새로 생성한 객체를 Repository 를 이용하여 DB에 저장한다
         return new MemberLocalDto(memberLocalRepository.save(memberLocal));

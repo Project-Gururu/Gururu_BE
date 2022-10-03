@@ -22,10 +22,16 @@ public class MemberLocalDto {
 
     private String memberAddrs;
 
+    private String x;
+
+    private String y;
+
     public MemberLocalDto(MemberLocal memberLocal) {
         this.mbId = memberLocal.getMember().getId();
         this.memberLocalId = memberLocal.getId();
         this.addrsName = memberLocal.getAddrsName();
         this.memberAddrs = memberLocal.getMemberAddrs();
+        this.x = memberLocal.getX();
+        this.y = memberLocal.getY();
     }
 }
