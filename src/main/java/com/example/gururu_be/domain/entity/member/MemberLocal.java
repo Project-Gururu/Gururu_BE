@@ -32,6 +32,14 @@ public class MemberLocal extends BaseEntity {
     @Size(max = 50)
     private String memberAddrs;
 
+    @NotNull
+    @Size(max = 50)
+    private String x;
+
+    @NotNull
+    @Size(max = 50)
+    private String y;
+
     public void updateMemberLocal(MemberLocalDto memberLocalDto) {
         this.addrsName = memberLocalDto.getAddrsName();
         this.memberAddrs = memberLocalDto.getMemberAddrs();
