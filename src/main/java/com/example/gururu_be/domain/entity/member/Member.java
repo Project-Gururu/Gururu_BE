@@ -3,14 +3,18 @@ package com.example.gururu_be.domain.entity.member;
 import com.example.gururu_be.domain.dto.member.ReqMemberInfoDto;
 import com.example.gururu_be.domain.dto.social.SocialUserInfoDto;
 import com.example.gururu_be.domain.entity.baseentity.BaseEntity;
+import com.example.gururu_be.domain.entity.store.Store;
 import com.example.gururu_be.enumerate.Role;
 import com.example.gururu_be.enumerate.Social;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -21,6 +25,11 @@ public class Member extends BaseEntity {
     @Column(unique = true)
     @Size(max = 50)
     private String loginId;
+
+    // => 1: N 엔티티에서 mbId 외래키를 뜻함
+    @JsonIgnore
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<Store> store = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
     private Social social;
