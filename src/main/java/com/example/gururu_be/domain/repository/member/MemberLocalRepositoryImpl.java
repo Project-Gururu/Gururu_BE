@@ -1,6 +1,6 @@
 package com.example.gururu_be.domain.repository.member;
 
-import com.example.gururu_be.domain.dto.store.MemberLocalDto;
+import com.example.gururu_be.domain.dto.member.MemberLocalDto;
 import com.example.gururu_be.domain.entity.member.QMember;
 import com.example.gururu_be.domain.entity.member.QMemberLocal;
 import com.example.gururu_be.enumerate.StatusFlag;

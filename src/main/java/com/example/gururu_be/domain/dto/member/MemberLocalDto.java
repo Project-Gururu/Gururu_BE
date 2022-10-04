@@ -1,4 +1,4 @@
-package com.example.gururu_be.domain.dto.store;
+package com.example.gururu_be.domain.dto.member;
 
 import com.example.gururu_be.domain.entity.member.MemberLocal;
 import lombok.AllArgsConstructor;

@@ -1,6 +1,6 @@
 package com.example.gururu_be.domain.entity.member;
 
-import com.example.gururu_be.domain.dto.store.MemberLocalDto;
+import com.example.gururu_be.domain.dto.member.MemberLocalDto;
 import com.example.gururu_be.domain.entity.baseentity.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -32,16 +32,16 @@ public class MemberLocal extends BaseEntity {
     @Size(max = 50)
     private String memberAddrs;
 
+    @NotNull
     @Size(max = 50)
     private String x;
 
+    @NotNull
     @Size(max = 50)
     private String y;
 
     public void updateMemberLocal(MemberLocalDto memberLocalDto) {
         this.addrsName = memberLocalDto.getAddrsName();
         this.memberAddrs = memberLocalDto.getMemberAddrs();
-        this.x = memberLocalDto.getX();
-        this.y = memberLocalDto.getY();
     }
 }
