@@ -144,6 +144,8 @@ public class AuthController {
 
         ResponseCookie responseCookie = ResponseCookie.from("accessToken", jwtTokenDto.getAccessToken())
                 .domain("localhost")
+                /// TODO: 2022/10/03 이후 반드시 제거할것
+                .secure(false)
                 .httpOnly(false)
                 .maxAge(60 * 30)
                 .sameSite("None")
@@ -154,6 +156,8 @@ public class AuthController {
 
         responseCookie = ResponseCookie.from("refreshToken", jwtTokenDto.getRefreshToken())
                 .domain("localhost")
+                /// TODO: 2022/10/03 이후 반드시 제거할것
+                .secure(false)
                 .httpOnly(false)
                 .maxAge(60 * 60 * 24)
                 .sameSite("None")
