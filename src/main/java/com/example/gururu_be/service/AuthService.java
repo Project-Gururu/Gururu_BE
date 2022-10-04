@@ -1,6 +1,7 @@
 package com.example.gururu_be.service;
 
 import com.example.gururu_be.domain.dto.JwtTokenDto;
+import com.example.gururu_be.domain.dto.member.ResMemberInfoDto;
 import com.example.gururu_be.domain.dto.social.SocialUserInfoDto;
 import com.example.gururu_be.domain.entity.member.Member;
 import com.example.gururu_be.domain.entity.security.RefreshToken;
@@ -123,4 +124,13 @@ public class AuthService {
                                 .profileImage(profileImage)
                                 .social(social).build();
     }
+
+    @Transactional
+    public ResMemberInfoDto getMbId(String loginId) {
+        Optional<Member> optionalMember = memberRepository.findByLoginId(loginId);
+        Member member = optionalMember.orElseThrow(
+                () -> new RequestException(ErrorCode.MEMBER_LOGINID_NOT_FOUND_404));
+        return new ResMemberInfoDto(member);
+    }
+
 }
