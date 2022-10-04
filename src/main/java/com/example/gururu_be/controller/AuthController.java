@@ -2,7 +2,9 @@ package com.example.gururu_be.controller;
 
 import com.example.gururu_be.domain.dto.JwtTokenDto;
 import com.example.gururu_be.domain.dto.ResResultDto;
+import com.example.gururu_be.domain.dto.member.ResMemberInfoDto;
 import com.example.gururu_be.domain.dto.social.SocialUserInfoDto;
+import com.example.gururu_be.domain.repository.member.MemberRepository;
 import com.example.gururu_be.service.AuthKakaoService;
 import com.example.gururu_be.service.AuthService;
 import com.example.gururu_be.util.exception.ErrorCode;
@@ -28,6 +30,7 @@ public class AuthController {
 
     private final AuthService authService;
     private final AuthKakaoService authKakaoService;
+    private final MemberRepository memberRepository;
 
     /**
      * <pre>
@@ -41,7 +44,7 @@ public class AuthController {
      * </pre>
      */
     @PostMapping("/{social}")
-    public ResponseEntity<ResResultDto> login(
+    public ResponseEntity<ResMemberInfoDto> login(
             @PathVariable("social") String socialPath, @RequestParam(name = "code") String code, String state,
             HttpServletResponse response) throws JsonProcessingException {
 
@@ -69,7 +72,13 @@ public class AuthController {
 
         setJwtCookie(response, jwtTokenDto);
 
-        return ResponseEntity.ok(new ResResultDto("로그인 성공"));
+        ResMemberInfoDto resMemberInfoDto = authService.getMbId(loginId);
+
+        /**
+         * 6번 수행 클라이언트로 보낼 mbid정보를 보낸다
+         */
+
+        return ResponseEntity.ok(resMemberInfoDto);
     }
 
     @PostMapping("/reissue")
