@@ -73,6 +73,14 @@ public class Store extends BaseEntity {
     @Size(max = 50)
     private String homepage;
 
+    @NotNull
+    @Size(max = 50)
+    private String x;
+
+    @NotNull
+    @Size(max = 50)
+    private String y;
+
     @Enumerated(EnumType.STRING)
     private Role role = Role.ROLE_USER;
 
@@ -94,5 +102,7 @@ public class Store extends BaseEntity {
         this.closeTime = storeDto.getCloseTime();
         this.phoneNumber = storeDto.getPhoneNumber();
         this.homepage = storeDto.getHomepage();
+        this.x = storeDto.getX();
+        this.y = storeDto.getY();
     }
 }
