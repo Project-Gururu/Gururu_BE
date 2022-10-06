@@ -45,7 +45,7 @@ public class AuthController {
      */
     @PostMapping("/{social}")
     public ResponseEntity<ResMemberInfoDto> login(
-            @PathVariable("social") String socialPath, @RequestParam(name = "code") String code, String state,
+            @PathVariable("social") String socialPath, @RequestParam(name = "code") String code,
             HttpServletResponse response) throws JsonProcessingException {
 
         /**

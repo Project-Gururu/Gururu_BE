@@ -45,6 +45,10 @@ public class StoreDto {
 
     private String homepage;
 
+    private String x;
+
+    private String y;
+
     public StoreDto(Store store) {
         this.mbId = store.getMember().getId();
         this.storeRegisterId = store.getId();
@@ -61,5 +65,7 @@ public class StoreDto {
         this.closeTime = store.getCloseTime();
         this.phoneNumber = store.getPhoneNumber();
         this.homepage = store.getHomepage();
+        this.x = store.getX();
+        this.y = store.getY();
     }
 }
