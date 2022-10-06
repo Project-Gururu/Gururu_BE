@@ -52,6 +52,8 @@ public class StoreService {
                            .closeTime(storeDto.getCloseTime())
                            .phoneNumber(storeDto.getPhoneNumber())
                            .homepage(storeDto.getHomepage())
+                           .x(storeDto.getX())
+                           .y(storeDto.getY())
                            .role(ROLE_ADMIN)
                            .build();
         // 7. 새로 생성한 객체를 Repository 를 이용하여 DB에 저장한다

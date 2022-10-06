@@ -21,12 +21,12 @@ public class ProductController {
      * M2-10 가격 등록
      */
     @PostMapping("/{storeRegisterId}/product")
-    public ResponseEntity<ResResultDto> createProduct(@PathVariable String storeRegisterId,@RequestBody ProductDto productDto) {
+    public ResponseEntity<ProductDto> createProduct(@PathVariable String storeRegisterId,@RequestBody ProductDto productDto) {
 
         //사업자 생성 서비스 호출
-        productService.createProduct(UUID.fromString(storeRegisterId),productDto);
+        ProductDto resProduct= productService.createProduct(UUID.fromString(storeRegisterId),productDto);
 
-        return ResponseEntity.ok(new ResResultDto("가격 정보 등록 성공"));
+        return ResponseEntity.ok(resProduct);
     }
 
     /**
