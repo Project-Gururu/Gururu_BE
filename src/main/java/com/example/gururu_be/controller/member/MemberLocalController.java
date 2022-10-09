@@ -6,6 +6,7 @@ import com.example.gururu_be.service.member.MemberLocalService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -20,12 +21,12 @@ public class MemberLocalController {
      * M1-5 회원 위치 저장
      */
     @PostMapping("/{mbId}/local")
-    public ResponseEntity<ResResultDto> createLocal(@PathVariable String mbId, @RequestBody MemberLocalDto memberLocalDto) {
+    public ResponseEntity<MemberLocalDto> createLocal(@PathVariable String mbId, @RequestBody MemberLocalDto memberLocalDto) {
 
         //사업자 생성 서비스 호출
-        memberLocalService.createLocal(UUID.fromString(mbId),memberLocalDto);
+        MemberLocalDto resMemberLocal = memberLocalService.createLocal(UUID.fromString(mbId),memberLocalDto);
 
-        return ResponseEntity.ok(new ResResultDto("회원 위치 저장 성공"));
+        return ResponseEntity.ok(resMemberLocal);
     }
 
     /**
@@ -69,5 +70,26 @@ public class MemberLocalController {
     public List<MemberLocalDto> getAllLocal(@PathVariable String mbId) {
         return memberLocalService.getAllLocal(UUID.fromString(mbId));
     }
+
+    /**
+     * M1-10 회원 선택 위치 저장
+     */
+    @PostMapping("/{mbId}/local/{memberLocalId}")
+    public ResponseEntity<ResResultDto> selectLocal(@PathVariable String mbId, @PathVariable String memberLocalId, @RequestBody MemberLocalDto memberLocalDto) {
+
+        //사업자 수정 서비스 호출
+        memberLocalService.selectLocal(UUID.fromString(mbId),UUID.fromString(memberLocalId),memberLocalDto);
+
+        return ResponseEntity.ok(new ResResultDto("회원 선택 위치 저장 성공"));
+    }
+
+    /**
+     * M1-11 회원 선택 위치 조회
+     */
+    @GetMapping("/{mbId}/localSelect")
+    public List<MemberLocalDto> getLocalSelect(@PathVariable String mbId) {
+        return memberLocalService.getLocalSelect(UUID.fromString(mbId));
+    }
+
 
 }

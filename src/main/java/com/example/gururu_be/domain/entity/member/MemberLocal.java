@@ -2,6 +2,7 @@ package com.example.gururu_be.domain.entity.member;
 
 import com.example.gururu_be.domain.dto.member.MemberLocalDto;
 import com.example.gururu_be.domain.entity.baseentity.BaseEntity;
+import com.example.gururu_be.enumerate.LocalState;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -40,8 +41,20 @@ public class MemberLocal extends BaseEntity {
     @Size(max = 50)
     private String y;
 
+    @Enumerated(EnumType.STRING)
+    private LocalState localState = LocalState.NO_MAIN;
+
     public void updateMemberLocal(MemberLocalDto memberLocalDto) {
         this.addrsName = memberLocalDto.getAddrsName();
         this.memberAddrs = memberLocalDto.getMemberAddrs();
     }
+
+    public void main(MemberLocalDto memberLocalDto) {
+        this.localState = LocalState.MAIN;
+    }
+
+    public void noMain(MemberLocalDto memberLocalDto) {
+        this.localState = LocalState.NO_MAIN;
+    }
+
 }
