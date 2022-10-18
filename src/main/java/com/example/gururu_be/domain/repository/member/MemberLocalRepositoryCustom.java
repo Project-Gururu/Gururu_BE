@@ -7,5 +7,5 @@ import java.util.UUID;
 
 public interface MemberLocalRepositoryCustom {
     List<MemberLocalDto> findAllMemberLocalBymbId_DSL(UUID mbId);
-    List<MemberLocalDto> finMemberLocalBymbId_DSL(UUID mbId);
+    List<MemberLocalDto> findMemberLocalBymbId_DSL(UUID mbId);
 }

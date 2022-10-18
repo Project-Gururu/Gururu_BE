@@ -41,7 +41,7 @@ public class MemberLocalRepositoryImpl implements MemberLocalRepositoryCustom {
     }
 
     @Override
-    public List<MemberLocalDto> finMemberLocalBymbId_DSL(UUID mbId) {
+    public List<MemberLocalDto> findMemberLocalBymbId_DSL(UUID mbId) {
         QMember member = QMember.member;
         QMemberLocal memberLocal = QMemberLocal.memberLocal;
 
@@ -53,7 +53,8 @@ public class MemberLocalRepositoryImpl implements MemberLocalRepositoryCustom {
                         memberLocal.addrsName,
                         memberLocal.memberAddrs,
                         memberLocal.x,
-                        memberLocal.y))
+                        memberLocal.y,
+                        memberLocal.localState))
                 .from(memberLocal)
                 .leftJoin(member)
                 .on(member.id.eq(memberLocal.member.id))
