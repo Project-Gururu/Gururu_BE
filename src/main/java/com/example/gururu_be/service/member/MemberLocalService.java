@@ -131,12 +131,12 @@ public class MemberLocalService {
     }
 
     /**
-     * M1-10 회원 선택 위치 조회
+     * M1-11 회원 선택 위치 조회
      */
     public List<MemberLocalDto> getLocalSelect(UUID mbId) {
         memberRepository.findById(mbId)
                 .orElseThrow(() -> new RequestException(ErrorCode.MEMBER_LOGINID_NOT_FOUND_404));
-        return memberLocalRepository.finMemberLocalBymbId_DSL(mbId);
+        return memberLocalRepository.findMemberLocalBymbId_DSL(mbId);
     }
     
 }
