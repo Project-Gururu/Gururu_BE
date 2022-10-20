@@ -20,10 +20,10 @@ public class StoreController {
      * M2-1 사업자 정보 등록
      */
     @PostMapping("/")
-    public ResponseEntity<StoreDto> createStore(@RequestBody StoreDto storeDto) {
+    public ResponseEntity<StoreDto> createStore(@PathVariable String mbId,@RequestBody StoreDto storeDto) {
 
         //사업자 생성 서비스 호출
-        StoreDto resStore = storeService.createStore(storeDto);
+        StoreDto resStore = storeService.createStore(UUID.fromString(mbId),storeDto);
 
         return ResponseEntity.ok(resStore);
     }

@@ -9,7 +9,6 @@ import com.example.gururu_be.enumerate.StatusFlag;
 import com.example.gururu_be.util.exception.ErrorCode;
 import com.example.gururu_be.util.exception.RequestException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -30,10 +29,8 @@ public class StoreService {
      * M2-1 사업자 정보 등록
      */
     @Transactional
-    public StoreDto createStore(StoreDto storeDto) {
-
-        String loginId = SecurityContextHolder.getContext().getAuthentication().getName();
-        Optional<Member> optionalMember = memberRepository.findByLoginId(loginId);
+    public StoreDto createStore(UUID mbId, StoreDto storeDto) {
+        Optional<Member> optionalMember = memberRepository.findById(mbId);
         Member member = optionalMember.orElseThrow(() -> new RequestException(ErrorCode.MEMBER_LOGINID_NOT_FOUND_404));
 
 
