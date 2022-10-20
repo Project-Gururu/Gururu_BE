@@ -127,7 +127,7 @@ public class AuthController {
         }
 
         ResponseCookie responseCookie = ResponseCookie.from("accessToken", "")
-                .domain(DOMAIN)
+                .domain("DOMAIN")
                 .httpOnly(false)
                 .maxAge(0)
                 .sameSite("None")
@@ -137,7 +137,7 @@ public class AuthController {
         response.addHeader(HttpHeaders.SET_COOKIE, responseCookie.toString());
 
         responseCookie = ResponseCookie.from("refreshToken", "")
-                .domain(DOMAIN)
+                .domain("DOMAIN")
                 .httpOnly(false)
                 .maxAge(0)
                 .sameSite("None")
@@ -155,7 +155,7 @@ public class AuthController {
     private void setJwtCookie(HttpServletResponse response, JwtTokenDto jwtTokenDto) {
 
         ResponseCookie responseCookie = ResponseCookie.from("accessToken", jwtTokenDto.getAccessToken())
-                .domain(DOMAIN)
+                .domain("DOMAIN")
                 .httpOnly(false)
                 .maxAge(60 * 30)
                 .sameSite("None")
@@ -165,7 +165,7 @@ public class AuthController {
         response.addHeader(HttpHeaders.SET_COOKIE, responseCookie.toString());
 
         responseCookie = ResponseCookie.from("refreshToken", jwtTokenDto.getRefreshToken())
-                .domain(DOMAIN)
+                .domain("DOMAIN")
                 .httpOnly(false)
                 .maxAge(60 * 60 * 24)
                 .sameSite("None")
