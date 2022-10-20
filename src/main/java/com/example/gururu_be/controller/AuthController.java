@@ -12,7 +12,6 @@ import com.example.gururu_be.util.exception.RequestException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
@@ -32,8 +31,6 @@ public class AuthController {
     private final AuthService authService;
     private final AuthKakaoService authKakaoService;
     private final MemberRepository memberRepository;
-    @Value("${DOMAIN}")
-    private String DOMAIN;
 
     /**
      * <pre>
@@ -127,7 +124,7 @@ public class AuthController {
         }
 
         ResponseCookie responseCookie = ResponseCookie.from("accessToken", "")
-//                .domain("DOMAIN")
+                .domain("localhost")
                 .httpOnly(false)
                 .maxAge(0)
                 .sameSite("None")
@@ -137,7 +134,7 @@ public class AuthController {
         response.addHeader(HttpHeaders.SET_COOKIE, responseCookie.toString());
 
         responseCookie = ResponseCookie.from("refreshToken", "")
-//                .domain("DOMAIN")
+                .domain("localhost")
                 .httpOnly(false)
                 .maxAge(0)
                 .sameSite("None")
@@ -155,7 +152,7 @@ public class AuthController {
     private void setJwtCookie(HttpServletResponse response, JwtTokenDto jwtTokenDto) {
 
         ResponseCookie responseCookie = ResponseCookie.from("accessToken", jwtTokenDto.getAccessToken())
-//                .domain("DOMAIN")
+                .domain("localhost")
                 .httpOnly(false)
                 .maxAge(60 * 30)
                 .sameSite("None")
@@ -165,7 +162,7 @@ public class AuthController {
         response.addHeader(HttpHeaders.SET_COOKIE, responseCookie.toString());
 
         responseCookie = ResponseCookie.from("refreshToken", jwtTokenDto.getRefreshToken())
-//                .domain("DOMAIN")
+                .domain("localhost")
                 .httpOnly(false)
                 .maxAge(60 * 60 * 24)
                 .sameSite("None")
