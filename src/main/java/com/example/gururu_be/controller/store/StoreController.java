@@ -19,7 +19,7 @@ public class StoreController {
     /**
      * M2-1 사업자 정보 등록
      */
-    @PostMapping("/")
+    @PostMapping("/{mbId}")
     public ResponseEntity<StoreDto> createStore(@PathVariable String mbId,@RequestBody StoreDto storeDto) {
 
         //사업자 생성 서비스 호출
