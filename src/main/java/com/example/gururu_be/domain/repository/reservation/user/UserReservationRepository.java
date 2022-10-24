@@ -1,4 +1,4 @@
-package com.example.gururu_be.domain.repository.reservation;
+package com.example.gururu_be.domain.repository.reservation.user;
 
 
 import com.example.gururu_be.domain.entity.reservation.Reservation;

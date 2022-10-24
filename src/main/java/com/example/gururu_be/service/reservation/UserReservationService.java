@@ -10,7 +10,7 @@ import com.example.gururu_be.domain.entity.store.Product;
 import com.example.gururu_be.domain.entity.store.Store;
 import com.example.gururu_be.domain.repository.member.MemberRepository;
 import com.example.gururu_be.domain.repository.pet.PetRepository;
-import com.example.gururu_be.domain.repository.reservation.UserReservationRepository;
+import com.example.gururu_be.domain.repository.reservation.user.UserReservationRepository;
 import com.example.gururu_be.domain.repository.store.StoreRepository;
 import com.example.gururu_be.domain.repository.store.beautician.BeauticianRepository;
 import com.example.gururu_be.domain.repository.store.product.ProductRepository;
@@ -66,6 +66,7 @@ public class UserReservationService {
                 .pet(pet)
                 .beautician(beautician)
                 .product(product)
+                .reservationDay(userUserReservationDto.getReservationDay())
                 .reservationTime(userUserReservationDto.getReservationTime())
                 .requestsInfo(userUserReservationDto.getRequestsInfo())
                 .refuseState(RefuseState.REFUSE_WAITING)
@@ -115,8 +116,10 @@ public class UserReservationService {
      */
     public List<UserReservationDto> getAllReservation(UUID mbId, String status) {
         memberRepository.findById(mbId)
-                .orElseThrow(() -> new RequestException(ErrorCode.RESERVATION_NOT_FOUND_404));
-        if (status.equals("waiting")) {
+                .orElseThrow(() -> new RequestException(ErrorCode.MEMBER_LOGINID_NOT_FOUND_404));
+        if (status.equals("inFull")) {
+            return userReservationRepository.findAllReservationBymbId_DSL(mbId);
+        } else if (status.equals("waiting")) {
             return userReservationRepository.findWaitingAllReservationBymbId_DSL(mbId);
         } else if (status.equals("progress")) {
             return userReservationRepository.findProgressAllReservationBymbId_DSL(mbId);
@@ -124,6 +127,26 @@ public class UserReservationService {
             return userReservationRepository.findRefuseAllReservationBymbId_DSL(mbId);
         } else if (status.equals("completion")) {
             return userReservationRepository.findCompletionAllReservationBymbId_DSL(mbId);
+        }
+        else throw new RequestException(ErrorCode.COMMON_BAD_REQUEST_400);
+    }
+
+    /**
+     * M4-5 예약 전체 조회 카운트 (유저)
+     */
+    public int getAllCountReservation(UUID mbId, String status) {
+        memberRepository.findById(mbId)
+                .orElseThrow(() -> new RequestException(ErrorCode.MEMBER_LOGINID_NOT_FOUND_404));
+        if (status.equals("inFull")) {
+            return userReservationRepository.findAllReservationBymbId_DSL(mbId).size();
+        } else if (status.equals("waiting")) {
+            return userReservationRepository.findWaitingAllReservationBymbId_DSL(mbId).size();
+        } else if (status.equals("progress")) {
+            return userReservationRepository.findProgressAllReservationBymbId_DSL(mbId).size();
+        } else if (status.equals("refuse")) {
+            return userReservationRepository.findRefuseAllReservationBymbId_DSL(mbId).size();
+        } else if (status.equals("completion")) {
+            return userReservationRepository.findCompletionAllReservationBymbId_DSL(mbId).size();
         }
         else throw new RequestException(ErrorCode.COMMON_BAD_REQUEST_400);
     }

@@ -31,6 +31,8 @@ public class UserReservationDto {
 
     private ReservationState reservationState;
 
+    private String reservationDay;
+
     private String reservationTime;
 
     private String requestsInfo;
@@ -49,6 +51,7 @@ public class UserReservationDto {
         this.productId = reservation.getProduct().getId();
         this.beauticianId = reservation.getBeautician().getId();
         this.reservationState = reservation.getReservationState();
+        this.reservationDay = reservation.getReservationDay();
         this.reservationTime = reservation.getReservationTime();
         this.requestsInfo = reservation.getRequestsInfo();
         this.refuseState = reservation.getRefuseState();
