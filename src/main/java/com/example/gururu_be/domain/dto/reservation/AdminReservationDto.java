@@ -1,5 +1,6 @@
 package com.example.gururu_be.domain.dto.reservation;
 
+import com.example.gururu_be.domain.entity.reservation.Reservation;
 import com.example.gururu_be.enumerate.RefuseState;
 import com.example.gururu_be.enumerate.ReservationState;
 import com.example.gururu_be.enumerate.ReviewState;
@@ -16,6 +17,8 @@ import java.util.UUID;
 @Builder
 public class AdminReservationDto {
 
+    private UUID reservationId;
+
     private UUID mbId;
 
     private UUID petId;
@@ -28,6 +31,8 @@ public class AdminReservationDto {
 
     private ReservationState reservationState;
 
+    private String reservationDay;
+
     private String reservationTime;
 
     private String requestsInfo;
@@ -38,4 +43,19 @@ public class AdminReservationDto {
 
     private ReviewState reviewState;
 
+    public AdminReservationDto(Reservation reservation) {
+        this.reservationId = reservation.getId();
+        this.mbId = reservation.getMember().getId();
+        this.petId = reservation.getPet().getId();
+        this.storeRegisterId = reservation.getStore().getId();
+        this.productId = reservation.getProduct().getId();
+        this.beauticianId = reservation.getBeautician().getId();
+        this.reservationState = reservation.getReservationState();
+        this.reservationDay = reservation.getReservationDay();
+        this.reservationTime = reservation.getReservationTime();
+        this.requestsInfo = reservation.getRequestsInfo();
+        this.refuseState = reservation.getRefuseState();
+        this.refuseMessage = reservation.getRefuseMessage();
+        this.reviewState = reservation.getReviewState();
+    }
 }

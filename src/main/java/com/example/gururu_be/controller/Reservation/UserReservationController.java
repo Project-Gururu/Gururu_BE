@@ -63,4 +63,12 @@ public class UserReservationController {
     public List<UserReservationDto> getAllReservation(@PathVariable String mbId, @PathVariable String status) {
         return userReservationService.getAllReservation(UUID.fromString(mbId), status);
     }
+
+    /**
+     * M4-5 예약 전체 조회 카운트 (유저)
+     */
+    @GetMapping("/{mbId}/reservation/allCount/{status}")
+    public int getAllCountReservation(@PathVariable String mbId, @PathVariable String status) {
+        return userReservationService.getAllCountReservation(UUID.fromString(mbId), status);
+    }
 }

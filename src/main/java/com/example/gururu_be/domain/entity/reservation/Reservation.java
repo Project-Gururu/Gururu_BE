@@ -52,6 +52,10 @@ public class Reservation extends BaseEntity {
 
     @NotNull
     @Size(max = 50)
+    private String reservationDay;
+
+    @NotNull
+    @Size(max = 50)
     private String reservationTime;
 
     @NotNull
