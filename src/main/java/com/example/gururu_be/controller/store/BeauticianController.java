@@ -21,12 +21,12 @@ public class BeauticianController {
      * M2-5 스타일리스트 등록
      */
     @PostMapping("/{storeRegisterId}/beautician")
-    public ResponseEntity<ResResultDto> createBeautician(@PathVariable String storeRegisterId, @RequestBody BeauticianDto beauticianDto) {
+    public ResponseEntity<BeauticianDto> createBeautician(@PathVariable String storeRegisterId, @RequestBody BeauticianDto beauticianDto) {
 
         //사업자 생성 서비스 호출
-        beauticianService.createBeautician(UUID.fromString(storeRegisterId),beauticianDto);
+        BeauticianDto resBeautincian = beauticianService.createBeautician(UUID.fromString(storeRegisterId),beauticianDto);
 
-        return ResponseEntity.ok(new ResResultDto("스타일리스트 정보 등록 성공"));
+        return ResponseEntity.ok(resBeautincian);
     }
 
     /**

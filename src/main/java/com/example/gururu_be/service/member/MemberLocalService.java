@@ -6,6 +6,7 @@ import com.example.gururu_be.domain.entity.member.Member;
 import com.example.gururu_be.domain.entity.member.MemberLocal;
 import com.example.gururu_be.domain.repository.member.MemberLocalRepository;
 import com.example.gururu_be.domain.repository.member.MemberRepository;
+import com.example.gururu_be.enumerate.LocalState;
 import com.example.gururu_be.enumerate.StatusFlag;
 import com.example.gururu_be.util.exception.ErrorCode;
 import com.example.gururu_be.util.exception.RequestException;
@@ -40,6 +41,7 @@ public class MemberLocalService {
                 .memberAddrs(memberLocalDto.getMemberAddrs())
                 .x(memberLocalDto.getX())
                 .y(memberLocalDto.getY())
+                .localState(LocalState.NO_MAIN)
                 .build();
         // 7. 새로 생성한 객체를 Repository 를 이용하여 DB에 저장한다
         return new MemberLocalDto(memberLocalRepository.save(memberLocal));
@@ -100,6 +102,41 @@ public class MemberLocalService {
         memberRepository.findById(mbId)
                 .orElseThrow(() -> new RequestException(ErrorCode.MEMBER_LOGINID_NOT_FOUND_404));
         return memberLocalRepository.findAllMemberLocalBymbId_DSL(mbId);
+    }
+
+
+    /**
+     * M1-10 회원 선택 위치 저장
+     */
+    @Transactional
+    public void selectLocal(UUID mbId, UUID memberLocalId,MemberLocalDto memberLocalDto) {
+
+        memberRepository.findById(mbId).orElseThrow(
+                () -> new RequestException(ErrorCode.MEMBER_LOGINID_NOT_FOUND_404));
+        Optional<MemberLocal> optionalMemberLocal = memberLocalRepository.findById(memberLocalId);
+        MemberLocal memberLocal = optionalMemberLocal.orElseThrow(
+                () -> new RequestException(ErrorCode.MEMBER_LOCAL_NOT_FOUND_404));
+        if (optionalMemberLocal.get().getDelFlag().equals(StatusFlag.DELETED)) {
+            throw new RequestException(ErrorCode.MEMBER_LOCAL_DELETE_409);
+        }
+        if (memberLocalDto.getMemberLocalId() == null) {
+            memberLocal.main(memberLocalDto);
+        } else {
+            UUID oldMemberLocalId = memberLocalDto.getMemberLocalId();
+            Optional<MemberLocal> optionalOldMemberLocal = memberLocalRepository.findById(oldMemberLocalId);
+            MemberLocal oldMemberLocal = optionalOldMemberLocal.get();
+            oldMemberLocal.noMain(memberLocalDto);
+            memberLocal.main(memberLocalDto);
+        }
+    }
+
+    /**
+     * M1-11 회원 선택 위치 조회
+     */
+    public List<MemberLocalDto> getLocalSelect(UUID mbId) {
+        memberRepository.findById(mbId)
+                .orElseThrow(() -> new RequestException(ErrorCode.MEMBER_LOGINID_NOT_FOUND_404));
+        return memberLocalRepository.findMemberLocalBymbId_DSL(mbId);
     }
     
 }

@@ -1,6 +1,7 @@
 package com.example.gururu_be.domain.dto.member;
 
 import com.example.gururu_be.domain.entity.member.MemberLocal;
+import com.example.gururu_be.enumerate.LocalState;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -25,6 +26,8 @@ public class MemberLocalDto {
     private String x;
 
     private String y;
+
+    private LocalState localState;
 
     public MemberLocalDto(MemberLocal memberLocal) {
         this.mbId = memberLocal.getMember().getId();
