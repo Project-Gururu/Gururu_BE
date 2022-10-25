@@ -10,6 +10,9 @@ import com.example.gururu_be.service.AuthService;
 import com.example.gururu_be.util.exception.ErrorCode;
 import com.example.gururu_be.util.exception.RequestException;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
@@ -43,6 +46,12 @@ public class AuthController {
      *     6. 프론트엔드에게 자체 인증 토큰(JWT)를 전달하여 인증 완료를 알린다.
      * </pre>
      */
+    @ApiOperation(value="M1-1 로그인", notes="시스템에 등록된 회원을 로그인한다.")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "API 정상 작동"),
+            @ApiResponse(code = 500, message = "서버 에러")
+    })
+    @RequestMapping(value="/auth/{social}", method={RequestMethod.POST})
     @PostMapping("/{social}")
     public ResponseEntity<ResMemberInfoDto> login(
             @PathVariable("social") String socialPath, @RequestParam(name = "code") String code,
@@ -81,6 +90,12 @@ public class AuthController {
         return ResponseEntity.ok(resMemberInfoDto);
     }
 
+    @ApiOperation(value="M1-2 리프레쉬토큰 갱신", notes="시스템에 등록된 회원의 리프레쉬토큰 갱신한다.")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "API 정상 작동"),
+            @ApiResponse(code = 500, message = "서버 에러")
+    })
+    @RequestMapping(value="/auth/reissue", method={RequestMethod.POST})
     @PostMapping("/reissue")
     public ResponseEntity<ResResultDto> reissue(HttpServletRequest request, HttpServletResponse response) {
 
