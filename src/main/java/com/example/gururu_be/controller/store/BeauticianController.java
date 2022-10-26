@@ -28,7 +28,7 @@ public class BeauticianController {
             @ApiResponse(code = 200, message = "API 정상 작동"),
             @ApiResponse(code = 500, message = "서버 에러")
     })
-    @RequestMapping(value="/admin/v1.0/store/{storeRegisterId}/beautician", method={RequestMethod.POST})
+    @RequestMapping(value="/{storeRegisterId}/beautician", method={RequestMethod.POST})
     @PostMapping("/{storeRegisterId}/beautician")
     public ResponseEntity<BeauticianDto> createBeautician(@PathVariable String storeRegisterId, @RequestBody BeauticianDto beauticianDto) {
 
@@ -46,7 +46,7 @@ public class BeauticianController {
             @ApiResponse(code = 200, message = "API 정상 작동"),
             @ApiResponse(code = 500, message = "서버 에러")
     })
-    @RequestMapping(value="/admin/v1.0/store/{storeRegisterId}/beautician/{beauticianId}", method={RequestMethod.GET})
+    @RequestMapping(value="/{storeRegisterId}/beautician/{beauticianId}", method={RequestMethod.GET})
     @GetMapping("/{storeRegisterId}/beautician/{beauticianId}")
     public ResponseEntity<BeauticianDto> getOneBeautician(@PathVariable String storeRegisterId,@PathVariable String beauticianId) {
 
@@ -63,7 +63,7 @@ public class BeauticianController {
             @ApiResponse(code = 200, message = "API 정상 작동"),
             @ApiResponse(code = 500, message = "서버 에러")
     })
-    @RequestMapping(value="/admin/v1.0/store/{storeRegisterId}/beautician/{beauticianId}", method={RequestMethod.PUT})
+    @RequestMapping(value="/{storeRegisterId}/beautician/{beauticianId}", method={RequestMethod.PUT})
     @PutMapping("/{storeRegisterId}/beautician/{beauticianId}")
     public ResponseEntity<ResResultDto> modifyBeautician(@PathVariable String storeRegisterId, @PathVariable String beauticianId, @RequestBody BeauticianDto beauticianDto) {
 
@@ -81,7 +81,7 @@ public class BeauticianController {
             @ApiResponse(code = 200, message = "API 정상 작동"),
             @ApiResponse(code = 500, message = "서버 에러")
     })
-    @RequestMapping(value="/admin/v1.0/store/{storeRegisterId}/beautician/{beauticianId}", method={RequestMethod.DELETE})
+    @RequestMapping(value="/{storeRegisterId}/beautician/{beauticianId}", method={RequestMethod.DELETE})
     @DeleteMapping("/{storeRegisterId}/beautician/{beauticianId}")
     public ResponseEntity<ResResultDto> deleteBeautician(@PathVariable String storeRegisterId, @PathVariable String beauticianId) {
 
@@ -98,7 +98,7 @@ public class BeauticianController {
             @ApiResponse(code = 200, message = "API 정상 작동"),
             @ApiResponse(code = 500, message = "서버 에러")
     })
-    @RequestMapping(value="/admin/v1.0/store/{storeRegisterId}/beautician", method={RequestMethod.GET})
+    @RequestMapping(value="/{storeRegisterId}/beautician", method={RequestMethod.GET})
     @GetMapping("/{storeRegisterId}/beautician")
     public List<BeauticianDto> getAllBeautician(@PathVariable String storeRegisterId) {
         return beauticianService.getAllBeautician(UUID.fromString(storeRegisterId));
