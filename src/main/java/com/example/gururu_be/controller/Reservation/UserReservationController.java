@@ -28,7 +28,7 @@ public class UserReservationController {
             @ApiResponse(code = 200, message = "API 정상 작동"),
             @ApiResponse(code = 500, message = "서버 에러")
     })
-    @RequestMapping(value="/user/v1.0/{mbId}/reservation/{storeRegisterId}/{petId}/{beauticianId}/{productId}", method={RequestMethod.POST})
+    @RequestMapping(value="/{mbId}/reservation/{storeRegisterId}/{petId}/{beauticianId}/{productId}", method={RequestMethod.POST})
     @PostMapping("/{mbId}/reservation/{storeRegisterId}/{petId}/{beauticianId}/{productId}")
     public ResponseEntity<ResResultDto> createReservation(@PathVariable String mbId,@PathVariable String storeRegisterId, @PathVariable String petId,
                                                           @PathVariable String beauticianId, @PathVariable String productId, @RequestBody UserReservationDto userReservationDto) {
@@ -49,7 +49,7 @@ public class UserReservationController {
             @ApiResponse(code = 200, message = "API 정상 작동"),
             @ApiResponse(code = 500, message = "서버 에러")
     })
-    @RequestMapping(value="/user/v1.0/{mbId}/reservation/{reservationId}", method={RequestMethod.DELETE})
+    @RequestMapping(value="/{mbId}/reservation/{reservationId}", method={RequestMethod.DELETE})
     @DeleteMapping("/{mbId}/reservation/{reservationId}")
     public ResponseEntity<ResResultDto> deleteReservation(@PathVariable String mbId, @PathVariable String reservationId) {
 
@@ -67,7 +67,7 @@ public class UserReservationController {
             @ApiResponse(code = 200, message = "API 정상 작동"),
             @ApiResponse(code = 500, message = "서버 에러")
     })
-    @RequestMapping(value="/user/v1.0/{mbId}/reservation/{reservationId}", method={RequestMethod.GET})
+    @RequestMapping(value="/{mbId}/reservation/{reservationId}", method={RequestMethod.GET})
     @GetMapping("/{mbId}/reservation/{reservationId}")
     public ResponseEntity<UserReservationDto> getOneReservation(@PathVariable String mbId, @PathVariable String reservationId) {
 
@@ -85,7 +85,7 @@ public class UserReservationController {
             @ApiResponse(code = 200, message = "API 정상 작동"),
             @ApiResponse(code = 500, message = "서버 에러")
     })
-    @RequestMapping(value="/user/v1.0/{mbId}/reservation/all/{status}", method={RequestMethod.GET})
+    @RequestMapping(value="/{mbId}/reservation/all/{status}", method={RequestMethod.GET})
     @GetMapping("/{mbId}/reservation/all/{status}")
     public List<UserReservationDto> getAllReservation(@PathVariable String mbId, @PathVariable String status) {
         return userReservationService.getAllReservation(UUID.fromString(mbId), status);
@@ -99,7 +99,7 @@ public class UserReservationController {
             @ApiResponse(code = 200, message = "API 정상 작동"),
             @ApiResponse(code = 500, message = "서버 에러")
     })
-    @RequestMapping(value="/user/v1.0/{mbId}/reservation/allCount/{status}", method={RequestMethod.GET})
+    @RequestMapping(value="/{mbId}/reservation/allCount/{status}", method={RequestMethod.GET})
     @GetMapping("/{mbId}/reservation/allCount/{status}")
     public int getAllCountReservation(@PathVariable String mbId, @PathVariable String status) {
         return userReservationService.getAllCountReservation(UUID.fromString(mbId), status);

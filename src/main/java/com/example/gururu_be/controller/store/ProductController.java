@@ -28,7 +28,7 @@ public class ProductController {
             @ApiResponse(code = 200, message = "API 정상 작동"),
             @ApiResponse(code = 500, message = "서버 에러")
     })
-    @RequestMapping(value="/admin/v1.0/store/{storeRegisterId}/product", method={RequestMethod.POST})
+    @RequestMapping(value="/{storeRegisterId}/product", method={RequestMethod.POST})
     @PostMapping("/{storeRegisterId}/product")
     public ResponseEntity<ProductDto> createProduct(@PathVariable String storeRegisterId,@RequestBody ProductDto productDto) {
 
@@ -46,7 +46,7 @@ public class ProductController {
             @ApiResponse(code = 200, message = "API 정상 작동"),
             @ApiResponse(code = 500, message = "서버 에러")
     })
-    @RequestMapping(value="/admin/v1.0/store/{storeRegisterId}/product/{productId}", method={RequestMethod.GET})
+    @RequestMapping(value="/{storeRegisterId}/product/{productId}", method={RequestMethod.GET})
     @GetMapping("/{storeRegisterId}/product/{productId}")
     public ResponseEntity<ProductDto> getOneProduct(@PathVariable String storeRegisterId, @PathVariable String productId) {
 
@@ -63,7 +63,7 @@ public class ProductController {
             @ApiResponse(code = 200, message = "API 정상 작동"),
             @ApiResponse(code = 500, message = "서버 에러")
     })
-    @RequestMapping(value="/admin/v1.0/store/{storeRegisterId}/product/{productId}", method={RequestMethod.PUT})
+    @RequestMapping(value="/{storeRegisterId}/product/{productId}", method={RequestMethod.PUT})
     @PutMapping("/{storeRegisterId}/product/{productId}")
     public ResponseEntity<ResResultDto> modifyProduct(@PathVariable String storeRegisterId, @PathVariable String productId, @RequestBody ProductDto productDto) {
 
@@ -81,7 +81,7 @@ public class ProductController {
             @ApiResponse(code = 200, message = "API 정상 작동"),
             @ApiResponse(code = 500, message = "서버 에러")
     })
-    @RequestMapping(value="/admin/v1.0/store/{storeRegisterId}/product/{productId}", method={RequestMethod.DELETE})
+    @RequestMapping(value="/{storeRegisterId}/product/{productId}", method={RequestMethod.DELETE})
     @DeleteMapping("/{storeRegisterId}/product/{productId}")
     public ResponseEntity<ResResultDto> deleteProduct(@PathVariable String storeRegisterId, @PathVariable String productId) {
 
@@ -98,7 +98,7 @@ public class ProductController {
             @ApiResponse(code = 200, message = "API 정상 작동"),
             @ApiResponse(code = 500, message = "서버 에러")
     })
-    @RequestMapping(value="/admin/v1.0/store/{storeRegisterId}/product", method={RequestMethod.GET})
+    @RequestMapping(value="/{storeRegisterId}/product", method={RequestMethod.GET})
     @GetMapping("/{storeRegisterId}/product")
     public List<ProductDto> getAllProduct(@PathVariable String storeRegisterId) {
         return productService.getAllProduct(UUID.fromString(storeRegisterId));

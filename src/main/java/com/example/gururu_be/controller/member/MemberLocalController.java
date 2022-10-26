@@ -28,7 +28,7 @@ public class MemberLocalController {
             @ApiResponse(code = 200, message = "API 정상 작동"),
             @ApiResponse(code = 500, message = "서버 에러")
     })
-    @RequestMapping(value="/user/v1.0/member/{mbId}/local", method={RequestMethod.POST})
+    @RequestMapping(value="/{mbId}/local", method={RequestMethod.POST})
     @PostMapping("/{mbId}/local")
     public ResponseEntity<MemberLocalDto> createLocal(@PathVariable String mbId, @RequestBody MemberLocalDto memberLocalDto) {
 
@@ -46,7 +46,7 @@ public class MemberLocalController {
             @ApiResponse(code = 200, message = "API 정상 작동"),
             @ApiResponse(code = 500, message = "서버 에러")
     })
-    @RequestMapping(value="/user/v1.0/member/{mbId}/local/{memberLocalId}", method={RequestMethod.GET})
+    @RequestMapping(value="/{mbId}/local/{memberLocalId}", method={RequestMethod.GET})
     @GetMapping("/{mbId}/local/{memberLocalId}")
     public ResponseEntity<MemberLocalDto> getOneLocal(@PathVariable String mbId,@PathVariable String memberLocalId) {
 
@@ -63,7 +63,7 @@ public class MemberLocalController {
             @ApiResponse(code = 200, message = "API 정상 작동"),
             @ApiResponse(code = 500, message = "서버 에러")
     })
-    @RequestMapping(value="/user/v1.0/member/{mbId}/local/{memberLocalId}", method={RequestMethod.PUT})
+    @RequestMapping(value="/{mbId}/local/{memberLocalId}", method={RequestMethod.PUT})
     @PutMapping("/{mbId}/local/{memberLocalId}")
     public ResponseEntity<ResResultDto> modifyLocal(@PathVariable String mbId, @PathVariable String memberLocalId, @RequestBody MemberLocalDto memberLocalDto) {
 
@@ -81,7 +81,7 @@ public class MemberLocalController {
             @ApiResponse(code = 200, message = "API 정상 작동"),
             @ApiResponse(code = 500, message = "서버 에러")
     })
-    @RequestMapping(value="/user/v1.0/member/{mbId}/local/{memberLocalId}", method={RequestMethod.DELETE})
+    @RequestMapping(value="/{mbId}/local/{memberLocalId}", method={RequestMethod.DELETE})
     @DeleteMapping("/{mbId}/local/{memberLocalId}")
     public ResponseEntity<ResResultDto> deleteLocal(@PathVariable String mbId, @PathVariable String memberLocalId) {
 
@@ -98,7 +98,7 @@ public class MemberLocalController {
             @ApiResponse(code = 200, message = "API 정상 작동"),
             @ApiResponse(code = 500, message = "서버 에러")
     })
-    @RequestMapping(value="/user/v1.0/member/{mbId}/local", method={RequestMethod.PUT})
+    @RequestMapping(value="/{mbId}/local", method={RequestMethod.PUT})
     @GetMapping("/{mbId}/local")
     public List<MemberLocalDto> getAllLocal(@PathVariable String mbId) {
         return memberLocalService.getAllLocal(UUID.fromString(mbId));
@@ -112,7 +112,7 @@ public class MemberLocalController {
             @ApiResponse(code = 200, message = "API 정상 작동"),
             @ApiResponse(code = 500, message = "서버 에러")
     })
-    @RequestMapping(value="/user/v1.0/member/{mbId}/local/{memberLocalId}", method={RequestMethod.POST})
+    @RequestMapping(value="/{mbId}/local/{memberLocalId}", method={RequestMethod.POST})
     @PostMapping("/{mbId}/local/{memberLocalId}")
     public ResponseEntity<ResResultDto> selectLocal(@PathVariable String mbId, @PathVariable String memberLocalId, @RequestBody MemberLocalDto memberLocalDto) {
 
@@ -130,7 +130,7 @@ public class MemberLocalController {
             @ApiResponse(code = 200, message = "API 정상 작동"),
             @ApiResponse(code = 500, message = "서버 에러")
     })
-    @RequestMapping(value="/user/v1.0/member/{mbId}/localSelect", method={RequestMethod.GET})
+    @RequestMapping(value="/{mbId}/localSelect", method={RequestMethod.GET})
     @GetMapping("/{mbId}/localSelect")
     public List<MemberLocalDto> getLocalSelect(@PathVariable String mbId) {
         return memberLocalService.getLocalSelect(UUID.fromString(mbId));

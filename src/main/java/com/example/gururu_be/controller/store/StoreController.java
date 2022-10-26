@@ -27,7 +27,7 @@ public class StoreController {
             @ApiResponse(code = 200, message = "API 정상 작동"),
             @ApiResponse(code = 500, message = "서버 에러")
     })
-    @RequestMapping(value="/admin/v1.0/store/{mbId}", method={RequestMethod.POST})
+    @RequestMapping(value="/{mbId}", method={RequestMethod.POST})
     @PostMapping("/{mbId}")
     public ResponseEntity<StoreDto> createStore(@PathVariable String mbId,@RequestBody StoreDto storeDto) {
 
@@ -45,7 +45,7 @@ public class StoreController {
             @ApiResponse(code = 200, message = "API 정상 작동"),
             @ApiResponse(code = 500, message = "서버 에러")
     })
-    @RequestMapping(value="/admin/v1.0/store/{storeRegisterId}", method={RequestMethod.GET})
+    @RequestMapping(value="/{storeRegisterId}", method={RequestMethod.GET})
     @GetMapping("/{storeRegisterId}")
     public ResponseEntity<StoreDto> getOneStore(@PathVariable String storeRegisterId) {
 
@@ -62,7 +62,7 @@ public class StoreController {
             @ApiResponse(code = 200, message = "API 정상 작동"),
             @ApiResponse(code = 500, message = "서버 에러")
     })
-    @RequestMapping(value="/admin/v1.0/store/{storeRegisterId}", method={RequestMethod.PUT})
+    @RequestMapping(value="/{storeRegisterId}", method={RequestMethod.PUT})
     @PutMapping("/{storeRegisterId}")
     public ResponseEntity<ResResultDto> modifyStore(@PathVariable String storeRegisterId,@RequestBody StoreDto storeDto) {
 
@@ -80,7 +80,7 @@ public class StoreController {
             @ApiResponse(code = 200, message = "API 정상 작동"),
             @ApiResponse(code = 500, message = "서버 에러")
     })
-    @RequestMapping(value="/admin/v1.0/store/{storeRegisterId}", method={RequestMethod.DELETE})
+    @RequestMapping(value="/{storeRegisterId}", method={RequestMethod.DELETE})
     @DeleteMapping("/{storeRegisterId}")
     public ResponseEntity<ResResultDto> deleteStore(@PathVariable String storeRegisterId) {
 
