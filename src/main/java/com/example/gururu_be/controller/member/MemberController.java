@@ -25,7 +25,7 @@ public class MemberController {
             @ApiResponse(code = 200, message = "API 정상 작동"),
             @ApiResponse(code = 500, message = "서버 에러")
     })
-    @RequestMapping(value="/user/v1.0/member/", method={RequestMethod.PUT})
+    @RequestMapping(value="/", method={RequestMethod.PUT})
     @PutMapping("/")
     public ResponseEntity<ResResultDto> modifyMember(@RequestBody ReqMemberInfoDto reqMemberInfoDto) {
 

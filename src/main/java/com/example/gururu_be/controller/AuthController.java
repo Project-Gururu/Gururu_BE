@@ -51,7 +51,7 @@ public class AuthController {
             @ApiResponse(code = 200, message = "API 정상 작동"),
             @ApiResponse(code = 500, message = "서버 에러")
     })
-    @RequestMapping(value="/auth/{social}", method={RequestMethod.POST})
+    @RequestMapping(value="/{social}", method={RequestMethod.POST})
     @PostMapping("/{social}")
     public ResponseEntity<ResMemberInfoDto> login(
             @PathVariable("social") String socialPath, @RequestParam(name = "code") String code,
@@ -95,7 +95,7 @@ public class AuthController {
             @ApiResponse(code = 200, message = "API 정상 작동"),
             @ApiResponse(code = 500, message = "서버 에러")
     })
-    @RequestMapping(value="/auth/reissue", method={RequestMethod.POST})
+    @RequestMapping(value="/reissue", method={RequestMethod.POST})
     @PostMapping("/reissue")
     public ResponseEntity<ResResultDto> reissue(HttpServletRequest request, HttpServletResponse response) {
 
