@@ -2,7 +2,7 @@ package com.example.gururu_be.controller.pet;
 
 import com.example.gururu_be.domain.dto.ResResultDto;
 import com.example.gururu_be.domain.dto.pet.PetDto;
-import com.example.gururu_be.service.PetService;
+import com.example.gururu_be.service.pet.PetService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
@@ -28,7 +28,7 @@ public class PetController {
             @ApiResponse(code = 200, message = "API 정상 작동"),
             @ApiResponse(code = 500, message = "서버 에러")
     })
-    @RequestMapping(value="/user/v1.0/member/{mbId}/pet", method={RequestMethod.POST})
+    @RequestMapping(value="/{mbId}/pet", method={RequestMethod.POST})
     @PostMapping("/{mbId}/pet")
     public ResponseEntity<ResResultDto> createPet(@PathVariable String mbId, @RequestBody PetDto petDto) {
 
@@ -46,7 +46,7 @@ public class PetController {
             @ApiResponse(code = 200, message = "API 정상 작동"),
             @ApiResponse(code = 500, message = "서버 에러")
     })
-    @RequestMapping(value="/user/v1.0/member/{mbId}/pet/{memberPetId}", method={RequestMethod.GET})
+    @RequestMapping(value="/{mbId}/pet/{memberPetId}", method={RequestMethod.GET})
     @GetMapping("/{mbId}/pet/{memberPetId}")
     public ResponseEntity<PetDto> getOnePet(@PathVariable String mbId,@PathVariable String memberPetId) {
 
@@ -63,7 +63,7 @@ public class PetController {
             @ApiResponse(code = 200, message = "API 정상 작동"),
             @ApiResponse(code = 500, message = "서버 에러")
     })
-    @RequestMapping(value="/user/v1.0/member/{mbId}/pet/{memberPetId}", method={RequestMethod.PUT})
+    @RequestMapping(value="/{mbId}/pet/{memberPetId}", method={RequestMethod.PUT})
     @PutMapping("/{mbId}/pet/{memberPetId}")
     public ResponseEntity<ResResultDto> modifyPet(@PathVariable String mbId, @PathVariable String memberPetId, @RequestBody PetDto petDto) {
 
@@ -81,7 +81,7 @@ public class PetController {
             @ApiResponse(code = 200, message = "API 정상 작동"),
             @ApiResponse(code = 500, message = "서버 에러")
     })
-    @RequestMapping(value="/user/v1.0/member/{mbId}/pet/{memberPetId}", method={RequestMethod.DELETE})
+    @RequestMapping(value="/{mbId}/pet/{memberPetId}", method={RequestMethod.DELETE})
     @DeleteMapping("/{mbId}/pet/{memberPetId}")
     public ResponseEntity<ResResultDto> deletePet(@PathVariable String mbId, @PathVariable String memberPetId) {
 
@@ -98,7 +98,7 @@ public class PetController {
             @ApiResponse(code = 200, message = "API 정상 작동"),
             @ApiResponse(code = 500, message = "서버 에러")
     })
-    @RequestMapping(value="/user/v1.0/member/{mbId}/pet", method={RequestMethod.GET})
+    @RequestMapping(value="/{mbId}/pet", method={RequestMethod.GET})
     @GetMapping("/{mbId}/pet")
     public List<PetDto> getAllPet(@PathVariable String mbId) {
         return petService.getAllPet(UUID.fromString(mbId));

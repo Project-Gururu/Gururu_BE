@@ -1,4 +1,4 @@
-package com.example.gururu_be.service;
+package com.example.gururu_be.service.pet;
 
 
 import com.example.gururu_be.domain.dto.pet.PetDto;
