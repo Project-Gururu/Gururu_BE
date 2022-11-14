@@ -102,12 +102,12 @@ public class UserReservationService {
         memberRepository.findById(mbId).orElseThrow(
                 () -> new RequestException(ErrorCode.MEMBER_LOGINID_NOT_FOUND_404));
         Optional<Reservation> optionalReservation = userReservationRepository.findById(reservationId);
-        Reservation Reservation = optionalReservation.orElseThrow(
+        Reservation reservation = optionalReservation.orElseThrow(
                 () -> new RequestException(ErrorCode.RESERVATION_NOT_FOUND_404));
         if (optionalReservation.get().getDelFlag().equals(StatusFlag.DELETED)) {
             throw new RequestException(ErrorCode.MEMBER_LOCAL_DELETE_409);
         }
-        return new UserReservationDto(Reservation);
+        return new UserReservationDto(reservation);
     }
     
     
