@@ -66,6 +66,11 @@ public enum ErrorCode {
     RESERVATION_DUPLICATION_409(HttpStatus.CONFLICT, "이미 등록된 예약 ID 입니다."),
     RESERVATION_DELETE_409(HttpStatus.CONFLICT, "삭제된 예약 ID 입니다."),
 
+     // Review 관련
+    REVIEW_NOT_FOUND_404(HttpStatus.NOT_FOUND, "요청한 리뷰 ID가 없습니다."),
+    REVIEW_DUPLICATION_409(HttpStatus.CONFLICT, "이미 등록된 리뷰 ID 입니다."),
+    REVIEW_DELETE_409(HttpStatus.CONFLICT, "삭제된 리뷰 ID 입니다."),
+
     // Role 관련
     NO_PERMISSION_TO_WRITE_NOTICE_400(HttpStatus.FORBIDDEN, "공지 사항 작성 권한이 없습니다."),
     NO_PERMISSION_TO_MODIFY_NOTICE_400(HttpStatus.FORBIDDEN, "공지 사항 수정 권한이 없습니다."),
